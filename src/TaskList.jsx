@@ -8,7 +8,7 @@ export default function TaskList({tasks, onChangeTask, onDeleteTask}) {
           <Task task={task} onChange={onChangeTask} onDelete={onDeleteTask} />
         </li>
       ))}
-    </ul>
+    </ul> 
   );
 }
 
