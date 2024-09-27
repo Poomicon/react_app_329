@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import from from'@tailwindcss/forms'
+
 export default {
   content: [
     "./index.html",
@@ -8,8 +8,5 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [
-    from
-  ],
+  plugins: [require('@tailwindcss/forms'),],
 }
-

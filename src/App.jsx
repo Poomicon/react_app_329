@@ -1,39 +1,23 @@
-// import { useStat } from 'react';
 import { useReducer } from 'react';
-import AddTask from './AddTask.jsx';
-import TaskList from './TaskList.jsx';
-import tasksReducer from './tasksReducer.js';
+//import { useState } from 'react';
+import AddTask from './Addtask.jsx';
+import TaskList from './Tasklist.jsx';
+import tasksReducer from './tasksReducer.jsx';
+
 
 export default function TaskApp() {
-//  const [tasks, setTasks] = useState(initialTasks);
+  //const [tasks, setTasks] = useState(initialTasks);
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
-
-  // function handleAddTask(text) {
-  //   setTasks([
-  //     ...tasks,
-  //     {
-  //       id: nextId++,
-  //       text: text,
-  //       done: false,
-  //     },
-  //   ]);
-  // }
-
-  // function handleChangeTask(task) {
-  //   setTasks(
-  //     tasks.map((t) => {
-  //       if (t.id === task.id) {
-  //         return task;
-  //       } else {
-  //         return t;
-  //       }
-  //     })
-  //   );
-  // }
-
-  // function handleDeleteTask(taskId) {
-  //   setTasks(tasks.filter((t) => t.id !== taskId));
-  // }
+  //function handleAddTask(text) {
+    //setTasks([
+      //...tasks,
+      //{
+        //id: nextId++,
+        //text: text,
+        //done: false,
+      //},
+    //]);
+  //}
 
   function handleAddTask(text) {
     dispatch({
@@ -58,8 +42,46 @@ export default function TaskApp() {
   }
 
 
+  function handleChangeTask(task) {
+    setTasks(
+      tasks.map((t) => {
+        if (t.id === task.id) {
+          return task;
+        } else {
+          return t;
+        }
+      })
+    );
+  }
 
+  function handleDeleteTask(taskId) {
+    setTasks(tasks.filter((t) => t.id !== taskId));
+  }
 
+  function tasksReducer(tasks, action) {
+    if (action.type === 'added') {
+      return [
+        ...tasks,
+        {
+          id: action.id,
+          text: action.text,
+          done: false,
+        },
+      ];
+    } else if (action.type === 'changed') {
+      return tasks.map((t) => {
+        if (t.id === action.task.id) {
+          return action.task;
+        } else {
+          return t;
+        }
+      });
+    } else if (action.type === 'deleted') {
+      return tasks.filter((t) => t.id !== action.id);
+    } else {
+      throw Error('Unknown action: ' + action.type);
+    }
+  }
   return (
     <>
       <h1>Prague itinerary</h1>

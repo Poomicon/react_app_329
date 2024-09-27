@@ -1,16 +1,16 @@
 import { useReducer, useState } from 'react';
-import { initialState, formReducer } from './Addtask'; // 
+import { initialState, formReducer } from './AddTask'; 
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { Field, Label, Switch } from '@headlessui/react';
 import ListUserComponent from './ListUserComponent';
 
 export default function FormComponent() {
   const [state, dispatch] = useReducer(formReducer, initialState); 
-  const [agreed, setAgreed] = useState(false); // 
+  const [agreed, setAgreed] = useState(false); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    dispatch({ type: 'SET_FORM_DATA', payload: { name, value } }); // 
+    dispatch({ type: 'SET_FORM_DATA', payload: { name, value } }); 
   };
 
   const handleSubmit = (e) => {
